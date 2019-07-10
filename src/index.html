@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PHONE EVE tow</title>
+    <style>
+        * {
+
+            padding: 0;
+            margin: 0;
+            /* box-sizing: border-box; */
+        }
+        html,body{
+            width: 100%;
+            height:100%;
+            overflow: hidden;
+        }
+
+        video {
+            margin: 0 auto;
+            /* width: 100%; */
+            object-fit: fill
+        }
+
+        .grayscale {
+            filter: grayscale(1);
+        }
+
+        .sepia {
+            filter: sepia(1);
+        }
+
+        .blur {
+            filter: blur(3px);
+        }
+
+        #capture {
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            height: 60px;
+            border-radius: 20px;
+            font-size: 30px;
+            border: 0;
+            background: cornflowerblue;
+            color: #fff;
+        }
+
+        #canvas {
+            position: absolute;
+            left: -2000px;
+        }
+
+        .clear-fix {
+            display: block
+        }
+
+        .clear-fix::after {
+            display: block;
+            content: '';
+            height: 0;
+            clear: both;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        #success_layer {
+            box-sizing: border-box;
+            padding: 20px;
+            width: 300px;
+        }
+
+        #success_layer .res-real {
+            background: greenyellow;
+            height: 15px;
+            padding: 5px 0;
+            font-size: 0
+        }
+
+        #success_layer .ball-list span {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background: #ee4b4a;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            line-height: 15px;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        #success_layer .ball-list .blue {
+            background: blue
+        }
+
+        #success_layer .ball-list .label {
+            font-size: 12px;
+            color: #333;
+            line-height: 15px
+        }
+
+        #success_layer .res-list .res-item {
+            height: 15px;
+            margin-top: 10px;
+            padding: 5px 0;
+            border-bottom: 1px solid #e8e8e8
+        }
+
+        #success_layer .res-list .no {
+            /* width: 15px; */
+            height: 15px;
+            margin-right: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #333;
+        }
+
+        #success_layer .res-list .res-text {
+            color: green;
+            line-height: 15px;
+            font-size: 12px;
+        }
+
+        #success_layer .res-list .ball-list {
+            margin-right: 15px;
+            height: 15px;
+            font-size: 0px;
+        }
+
+        #success_layer .tips {
+            height: 20px;
+            color: #999;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;margin:10px 0;">PHONE EVE </h1>
+
+    <script>
+        const $winWidth = window.innerWidth;
+        document.write(`<video autoplay muted width="${$winWidth}" height="${$winWidth / 0.75}"  id="video" ></video>
+  <button id="capture">扫描</button>`)
+    </script>
+    <canvas id="canvas" width="300" height="400" style="width: 150px;height: 200px;"></canvas>
+
+ 
+
+    <script src="https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./plugins/hidpi-canvas.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./plugins/layer.js"></script>
+<!--    <script src="./plugins/pako.js"></script>-->
+    <script src="./index.js?qqqssqq"></script>
+ 
+</body>
+<div id="success_layer_warp" style="display: none;">
+        <div id="success_layer">
+                <p class="res-real ball-list">
+                    <!-- <b class="label">开奖号码：</b> -->
+                    <!-- <span>01</span>
+                <span>16</span>
+                <span class="blue">09</span>         --> 
+                </p>
+                <ul class="res-list">
+                    <!-- <li class="res-item clear-fix">
+                    <div class="no fl">A : </div>
+                    <p class="ball-list fl">
+                        <span>09</span>
+                        <span class="blue">10</span>
+                    </p>
+                    <div class="res-text fl">没中奖</div>
+                </li> -->
+                </ul>
+                <p class="tips">以上结果结果仅供才考</p>
+            </div>
+        </div>
+</html>
