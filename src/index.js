@@ -189,7 +189,7 @@ function sendBase64(base64) {
     //     base64
     // }, {to: 'string'});
 
-    axios.post(`http://${ location.hostname}:3369/analysis`,{
+    axios.post(`http://${ location.hostname}/api/analysis`,{
             base64
     }).then((res)=>{
         console.log(res.data)
