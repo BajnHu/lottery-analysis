@@ -2,7 +2,9 @@ const app = require('express')();
 const request = require('request')
 const bodyParser = require('body-parser')
 const qs = require('querystring');
-
+// const multiparty = require('multiparty');
+// const schedule = require('node-schedule');
+//
 
 const token = require('./getToken');
 const accurate_basic = require('./accurate_basic');
@@ -61,12 +63,12 @@ app.get('/getToken', (req, res) => {
     })
 })
 app.get('/analysis', (req, res) => {
+    console.log('只支持post')
     res.send(JSON.stringify({
         code: 1,
         message: "只支持post"
     }))
 })
-
 
 function getHistory(lottery_id) {
     // let lottery_id_arr = ['ssq', 'dlt'];
@@ -76,7 +78,7 @@ function getHistory(lottery_id) {
             lottery_id,
             page_size:50
         });
-       
+
         request('http://apis.juhe.cn/lottery/history?'+param,{}, (err, res, body) => {
             if (err) {
                 console.log(err,'获取开奖历史失败！！！！')
@@ -90,13 +92,41 @@ function getHistory(lottery_id) {
     });
 }
 
-getHistory('ssq');
-getHistory('dlt');
+function scheduleCronstyle(){
+//     getHistory('ssq');
+//     getHistory('dlt');
+//     schedule.scheduleJob('00 21 1 * * *', function(){
+//         console.log('scheduleCronstyle:' + new Date());
+        getHistory('ssq');
+        getHistory('dlt');
+//     });
+}
+
+scheduleCronstyle()
+
+
+// app.post('/uploadFile',(req,res)=>{
+    // const form = new multiparty.Form();
+    // console.log('req');
+    //
+    // form.parse(req,function (err,fields,files) {
+    //     console.log(files)
+    //     res.send({
+    //         code:0,
+    //         message:'updata'
+    //     })
+    //     res.end();
+    // })
+// })
+
 
 app.post('/analysis', (req, res) => {
 
-    const image = req.body.base64;
+    const image = req.body;
+    console.log(image);
     console.log(+new Date)
+
+
     accurate_basic(image).then(
         (responese) => {
             let data = selectkRes(JSON.parse(responese).words_result);
@@ -113,7 +143,7 @@ app.post('/analysis', (req, res) => {
             let resData = bonus(data,lottery_history);
             let succMsg = '识别完成' ;
             let code = 0;
-            // console.log(resData.code)   
+            // console.log(resData.code)
             if(resData.code!==0){
                 succMsg = resData
                 resData = null;
@@ -137,14 +167,10 @@ app.post('/analysis', (req, res) => {
         })
 })
 
-app.get('/', (req, res) => {
-
-    res.send('test')
-
-})
-
 
 let server = app.listen('3369', (req, res) => {
     let { address, port } = server.address()
     console.log("应用实例，访问地址为 http://%s:%s", address, port)
 })
+
+

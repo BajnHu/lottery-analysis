@@ -153,8 +153,11 @@
 
     <script>
         const $winWidth = window.innerWidth;
+        const $winHeight = window.innerHeight;
+        if($winWidth,$winHeight)
+
         document.write(`<video autoplay muted width="${$winWidth}" height="${$winWidth / 0.75}"  id="video" ></video>
-  <button id="capture">扫描</button>`)
+    <button id="capture">扫描</button>`)
     </script>
     <canvas id="canvas" width="300" height="400" style="width: 150px;height: 200px;"></canvas>
 
@@ -165,7 +168,6 @@
     <script src="./plugins/hidpi-canvas.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="./plugins/layer.js"></script>
-<!--    <script src="./plugins/pako.js"></script>-->
     <script src="./index.js?qqqssqq"></script>
  
 </body>

@@ -4,6 +4,7 @@ var reload      = browserSync.reload;
 gulp.task('watch', function() {
     browserSync.init({
         server: {
+            https:true,
             baseDir: "./src"
         }
     });
